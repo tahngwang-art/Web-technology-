@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft Game</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 20px;
+}
+tr:nth-child(2n){
+  background-color: rgb(238, 221, 74);
+}
+tr:nth-child(3n){
+  background-color: rgb(238, 94, 10);
+}
+tr:nth-child(5n){
+  background-color: rgb(231, 96, 119);
+}
+tr:nth-child(4n){
+  background-color: rgb(158, 203, 230);
+}
+#gameArea{
+  width: 300px;
+  height: 200px;
+  background: white;
+  border: 1px solid black;
+  position: relative;
+}
+#ball{
+  width: 50px;
+  height: 50px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  display: none;
+}
+</style>
+</head>
+<body>
+<form action="">
+<table>
+<thead>
+<tr>
+  <th>Hello</th>
+  <th>Hello</th>
+  <th>Hello</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Score</td>
+  <td id="score">0</td>
+  <td><button type="button" onclick="startGame()">Start Draft</button></td>
+</tr>
+<tr>
+  <td>Game Area</td>
+  <td>
+    <div id="gameArea">
+      <div id="ball" onclick="catchBall()"></div>
+    </div>
+  </td>
+  <td>Click the ball</td>
+</tr>
+<tr>
+  <td>Message</td>
+  <td id="msg">This is a nice way</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+</form>
+
+<script>
+// DRAFT GAME - Catch The Ball
+var score = 0;
+
+function startGame(){
+  score = 0;
+  document.getElementById("score").innerHTML = score;
+  document.getElementById("msg").innerHTML = "Game Start - Catch it";
+  document.getElementById("ball").style.display = "block";
+  moveBall();
+}
+
+function moveBall(){
+  var x = Math.floor(Math.random() * 250);
+  var y = Math.floor(Math.random() * 150);
+  var ball = document.getElementById("ball");
+  ball.style.left = x + "px";
+  ball.style.top = y + "px";
+}
+
+function catchBall(){
+  score++;
+  document.getElementById("score").innerHTML = score;
+  document.getElementById("msg").innerHTML = "Good! You caught it";
+  moveBall();
+}
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mass Converter</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 20px;
+}
+tr:nth-child(2n){
+  background-color: rgb(238, 221, 74);
+}
+tr:nth-child(3n){
+  background-color: rgb(238, 94, 10);
+}
+tr:nth-child(5n){
+  background-color: rgb(231, 96, 119);
+}
+tr:nth-child(4n){
+  background-color: rgb(158, 203, 230);
+}
+</style>
+</head>
+<body>
+<form action="">
+<table>
+<thead>
+<tr>
+  <th>Hello</th>
+  <th>Hello</th>
+  <th>Hello</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Enter Mass</td>
+  <td><input type="number" id="value" placeholder="This is a nice way"></td>
+  <td>
+    <select id="from">
+      <option value="kg">kg</option>
+      <option value="g">g</option>
+      <option value="lb">lb</option>
+      <option value="oz">oz</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <td>Convert To</td>
+  <td>
+    <select id="to">
+      <option value="g">g</option>
+      <option value="kg">kg</option>
+      <option value="lb">lb</option>
+      <option value="oz">oz</option>
+    </select>
+  </td>
+  <td><button type="button" onclick="convert()">Convert</button></td>
+</tr>
+<tr>
+  <td>Result</td>
+  <td id="result">This is a nice way</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+</form>
+
+<script>
+function convert(){
+  var val = document.getElementById("value").value;
+  var from = document.getElementById("from").value;
+  var to = document.getElementById("to").value;
+
+  var inKg = 0;
+  if(from == "kg") inKg = val;
+  if(from == "g") inKg = val / 1000;
+  if(from == "lb") inKg = val * 0.453592;
+  if(from == "oz") inKg = val * 0.0283495;
+
+  var answer = 0;
+  if(to == "kg") answer = inKg;
+  if(to == "g") answer = inKg * 1000;
+  if(to == "lb") answer = inKg / 0.453592;
+  if(to == "oz") answer = inKg / 0.0283495;
+
+  document.getElementById("result").innerHTML = val + " " + from + " = " + answer.toFixed(2) + " " + to;
+}
+</script>
+</body>
+</html>
+
